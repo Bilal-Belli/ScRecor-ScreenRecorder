@@ -8,7 +8,7 @@ class ScreenRecorder:
     def __init__(self):
         self.recording = False
         self.resolution = (1920, 1080)
-        self.fps = 30
+        self.fps = 15
         self.codec = cv2.VideoWriter_fourcc(*"XVID")
         self.video_output = None
     
@@ -42,7 +42,23 @@ def stop_recording():
 
 # Create the tkinter window
 window = tk.Tk()
-window.title("Screen Recorder")
+window.title("ScRecor")
+window.iconbitmap("iconFilm.ico")
+window.configure(bg="#189100")
+
+# Get screen dimensions
+screen_width = window.winfo_screenwidth()
+screen_height = window.winfo_screenheight()
+
+# Calculate window position
+x_coordinate = int((screen_width / 2) - (window.winfo_reqwidth() / 2))
+y_coordinate = int((screen_height / 2) - (window.winfo_reqheight() / 2))
+
+# Center the window on the screen
+window.geometry(f"+{x_coordinate}+{y_coordinate}")
+
+# Make the window unresizable
+window.resizable(False, False)
 
 # Create the "Start Recording" button
 start_button = tk.Button(window, text="Start Recording", command=start_recording)
