@@ -3,6 +3,7 @@ import numpy as np
 import pyautogui
 import tkinter as tk
 import threading
+from tkinter import filedialog
 
 class ScreenRecorder:
     def __init__(self):
@@ -11,19 +12,22 @@ class ScreenRecorder:
         self.fps = 15
         self.codec = cv2.VideoWriter_fourcc(*"XVID")
         self.video_output = None
-    
     def start_recording(self):
         self.recording = True
-        self.video_output = cv2.VideoWriter("record.avi", self.codec, self.fps, self.resolution)
-        
         while self.recording:
             screenshot = pyautogui.screenshot()
             frame = np.array(screenshot)
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+            # Get the current position of the mouse cursor
+            mouse_x, mouse_y = pyautogui.position()
+
+            # Draw the mouse cursor on the frame
+            cv2.circle(frame, (mouse_x, mouse_y), 5, (0, 0, 255), -1)
+
+            # Write the frame to the output video file
             self.video_output.write(frame)
-            
         self.video_output.release()
-        
     def stop_recording(self):
         self.recording = False
 
@@ -32,6 +36,21 @@ recorder = ScreenRecorder()
 def start_recording():
     start_button["state"] = tk.DISABLED
     stop_button["state"] = tk.NORMAL
+    
+    # Ask the user for the video file path
+    file_path = filedialog.asksaveasfilename(defaultextension=".avi")
+    if not file_path:
+        # User canceled, enable the buttons again and return
+        start_button["state"] = tk.NORMAL
+        stop_button["state"] = tk.DISABLED
+        return
+    
+    # Set the video file path in the recorder
+    recorder.video_output = cv2.VideoWriter(file_path, recorder.codec, recorder.fps, recorder.resolution)
+    
+    # Minimize the window
+    window.iconify()
+    
     recording_thread = threading.Thread(target=recorder.start_recording)
     recording_thread.start()
 
