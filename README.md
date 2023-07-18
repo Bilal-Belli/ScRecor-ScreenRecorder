@@ -16,3 +16,4 @@ This repository presents a simple Python script for screen recording.
 ### License
 This repository is licensed under the MIT License.
 ### For contributors
+Every collaborator is welcome to contribute to this repository.
