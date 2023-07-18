@@ -6,7 +6,7 @@ This repository presents a simple Python script for screen recording.
 - Graphical user interface (GUI).
 
 <div align="center">
-   <img  width="270" src="https://github.com/Bilal-Belli/ScreenRecorder/assets/74218805/0eaf4320-7c27-45f7-85c6-17c8846631d8">
+   <img  width="270" src="https://github.com/Bilal-Belli/ScreenRecorder/assets/74218805/ead9b326-9bbe-47c7-a1e1-4b07f53c3cf4">
 </div>
 
 ### For Testing
