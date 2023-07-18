@@ -1,9 +1,10 @@
 # Screen Recorder (ScRecor)
-This repository present a simple python script to record the screen.
+This repository presents a simple Python script for screen recording.
 ### Features
 - You can customize the FPS in the code as desired.
 - You can customize the cursor in the code to your liking, including shapes, images, and emojis.
 - Graphical user interface (GUI).
+
 <div align="center">
    <img  width="270" src="https://github.com/Bilal-Belli/ScreenRecorder/assets/74218805/0eaf4320-7c27-45f7-85c6-17c8846631d8">
 </div>
